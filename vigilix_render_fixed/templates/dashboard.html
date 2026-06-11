@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="top-head">
+    <div><span class="tag">Main Dashboard</span><h1>Command Center</h1><p>Connected cameras, live recordings, evidence alerts and monthly detection summary.</p></div>
+    <a class="btn primary" href="/add_camera">Add Camera</a>
+</header>
+
+<section class="stats">
+    <div class="stat"><span>🎥</span><h3>{{ cameras|length }}</h3><p>Connected Cameras</p></div>
+    <div class="stat"><span>🚨</span><h3>{{ total_alerts }}</h3><p>Total Alerts</p></div>
+    <div class="stat"><span>📅</span><h3>{{ today_alerts }}</h3><p>Today's Alerts</p></div>
+    <div class="stat"><span>🖼️</span><h3>{{ evidence_count }}</h3><p>Evidence Captured</p></div>
+</section>
+
+<section class="dashboard-split">
+    <div class="panel chart-panel"><div class="panel-head"><h2>Monthly Detection Graph</h2><a href="/analytics">Full Analytics</a></div><div class="bar-chart">{% for item in monthly_stats %}<div class="bar-item"><div class="bar" style="height:{{ item.height }}%"><span>{{ item.count }}</span></div><small>{{ item.month }}</small></div>{% endfor %}</div></div>
+    <div class="panel quick-panel"><h2>Location Alert Rules</h2><div class="rule-line"><b>School</b><span>Weapon + Crowd</span></div><div class="rule-line"><b>College</b><span>All alerts</span></div><div class="rule-line"><b>Mall / Railway</b><span>Public safety alerts</span></div><div class="rule-line"><b>Road</b><span>Helmet, speed, seat belt</span></div></div>
+</section>
+
+<section class="section-head"><h2>Live Camera View</h2><p>Click a camera to zoom into full live view.</p></section>
+<section class="camera-grid">
+    {% for cam in cameras %}
+    <div class="camera-card">
+        <div class="camera-title"><div><h3>{{ cam.camera_name }}</h3><p>{{ cam.location }} • {{ cam.location_type }}</p></div><span>LIVE</span></div>
+        <a class="video-box" href="/camera/{{ cam.id }}"><img src="/video_feed/{{ cam.id }}" alt="camera feed"></a>
+        <div class="camera-actions"><a href="/camera/{{ cam.id }}">Zoom View</a><a class="danger" href="/delete_camera/{{ cam.id }}">Remove</a></div>
+    </div>
+    {% else %}
+    <div class="empty"><h3>No cameras connected.</h3><p>Add your laptop camera with source <b>0</b>.</p><a class="btn primary" href="/add_camera">Add Camera</a></div>
+    {% endfor %}
+</section>
+
+<section class="section-head"><h2>Recent Alerts with Evidence</h2><a href="/alerts">View Past Records</a></section>
+<section class="alert-list">
+    {% for alert in alerts %}
+    <div class="alert-row evidence-row">
+        {% if alert.evidence_path %}<img class="mini-evidence" src="/evidence/{{ alert.evidence_path }}">{% else %}<div class="mini-evidence empty-img">No Image</div>{% endif %}
+        <div><h3>{{ alert.threat_type }}</h3><p>{{ alert.camera_name }} • {{ alert.location }} • {{ alert.alert_day }} • {{ alert.alert_date }} • {{ alert.alert_time }}</p></div>
+        <span class="risk {{ alert.risk_level|lower }}">{{ alert.risk_level }}</span>
+    </div>
+    {% else %}<p class="muted">No alerts detected yet.</p>{% endfor %}
+</section>
+{% endblock %}

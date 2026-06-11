@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-layout small-auth">
+    <div class="auth-info"><span class="tag">Step 2</span><h1>Secure Login</h1><p>Login with username and password to open your personal monitoring dashboard.</p><div class="secure-grid"><div>Live Cameras</div><div>Evidence History</div><div>Monthly Reports</div></div></div>
+    <div class="auth-card advanced-card login-card">
+        <div class="lock-orb">🔐</div>
+        <h2>Welcome Back</h2>
+        <form method="POST">
+            <label>Username</label><input type="text" name="username" placeholder="Enter username" required>
+            <label>Password</label><input type="password" name="password" placeholder="Enter password" required>
+            <button class="btn primary full" type="submit">Login to Dashboard</button>
+        </form>
+        <a href="/signup">Create new account</a>
+    </div>
+</section>
+{% endblock %}

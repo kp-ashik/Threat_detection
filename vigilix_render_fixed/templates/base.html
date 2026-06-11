@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vigilix AI Safety System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="bg-glow one"></div><div class="bg-glow two"></div><div class="bg-glow three"></div>
+    <aside class="sidebar">
+        <a class="brand" href="/dashboard">
+            <div class="logo">VX</div>
+            <div><h2>Vigilix AI</h2><p>Safety Intelligence</p></div>
+        </a>
+        <nav>
+            {% if session.get("user_id") %}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/add_camera">Add Camera</a>
+            <a href="/alerts">Alerts & Evidence</a>
+            <a href="/analytics">Analytics</a>
+            <a href="/usage">Location Rules</a>
+            <a href="/data_info">Data Storage</a>
+            <a href="/logout">Logout</a>
+            {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Create Account</a>
+            {% endif %}
+        </nav>
+        {% if session.get("user_id") %}
+        <div class="user-pill"><span>{{ session.get("username")[:1]|upper }}</span><div><b>{{ session.get("username") }}</b><small>{{ session.get("gmail") }}</small></div></div>
+        {% endif %}
+    </aside>
+    <main class="main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

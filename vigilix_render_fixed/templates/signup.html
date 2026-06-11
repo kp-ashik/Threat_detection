@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-layout small-auth">
+    <div class="auth-info"><span class="tag">Step 1</span><h1>Create User Account</h1><p>Use username, Gmail and password. This identity is used to separate your cameras, alerts and evidence records.</p></div>
+    <div class="auth-card advanced-card">
+        <h2>New Account</h2>
+        <form method="POST">
+            <label>Username</label><input type="text" name="username" placeholder="schooladmin" required>
+            <label>Gmail</label><input type="email" name="gmail" placeholder="example@gmail.com" required>
+            <label>Password</label><input type="password" name="password" placeholder="Create password" required>
+            <button class="btn primary full" type="submit">Create Account</button>
+        </form>
+        <a href="/login">Already registered? Login</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-card wide advanced-card">
+    <span class="tag">Camera Setup</span><h1>Add New Camera</h1><p>Add laptop camera, IP camera, RTSP camera URL or local video file. There is no camera limit on this page.</p>
+    <form method="POST" class="grid-form">
+        <div><label>Camera Name</label><input type="text" name="camera_name" placeholder="Front Gate Camera" required></div>
+        <div><label>Location</label><input type="text" name="location" placeholder="Main Gate / Corridor / Parking Area" required></div>
+        <div><label>Location Type</label><select name="location_type" required><option>School</option><option>College</option><option>Mall</option><option>Railway Station</option><option>Road</option></select></div>
+        <div><label>Alert Gmail</label><input type="email" name="alert_email" placeholder="user@gmail.com"></div>
+        <div class="full-field"><label>Camera Source</label><input type="text" name="source" placeholder="Use 0 for laptop camera or paste RTSP URL" required></div>
+        <button class="btn primary full-field" type="submit">Add Camera</button>
+    </form>
+    <div class="note">Examples: <b>0</b> for laptop camera, <b>sample.mp4</b> for video file, or <b>rtsp://username:password@camera-ip/stream</b>.</div>
+</div>
+{% endblock %}

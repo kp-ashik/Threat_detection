@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="top-head"><div><span class="tag">Data Storage</span><h1>Where User Data Is Saved</h1><p>Understand how login, camera details, alerts and evidence are stored.</p></div></header>
+<section class="context-grid big"><div class="info-card"><h3>Local Database</h3><p>User accounts, cameras and alert records are saved in <b>school_surveillance.db</b> inside the project folder.</p></div><div class="info-card"><h3>Evidence Folder</h3><p>Captured screenshots are saved in the <b>evidence</b> folder and linked to alert records.</p></div><div class="info-card"><h3>Another Device Login</h3><p>Another device can log in only when it opens the same running server using your laptop IP or when the app is deployed online.</p></div><div class="info-card"><h3>Cloud Use</h3><p>For real multi-device login anywhere, deploy the Flask app on a cloud server and use a cloud database.</p></div></section>
+{% endblock %}

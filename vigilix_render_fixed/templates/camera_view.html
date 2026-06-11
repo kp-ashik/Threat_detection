@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="top-head"><div><span class="tag">Zoom Live View</span><h1>{{ camera.camera_name }}</h1><p>{{ camera.location }} • {{ camera.location_type }} • Source: {{ camera.source }}</p></div><a class="btn secondary" href="/dashboard">Back</a></header>
+<div class="full-video zoom-box"><img src="/video_feed/{{ camera.id }}" alt="live feed"></div>
+<div class="note">This is the full live camera recording view. Evidence screenshots are saved automatically when an enabled alert is detected.</div>
+{% endblock %}

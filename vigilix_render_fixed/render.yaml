@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: vigilix-ai
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: DB_PATH
+        value: /tmp/vigilix.db
+      - key: EVIDENCE_DIR
+        value: /tmp/evidence
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ROBOFLOW_API_KEY
+        sync: false
+      - key: WEAPON_MODEL_ID
+        sync: false
+      - key: FIRE_SMOKE_MODEL_ID
+        sync: false
+      - key: HELMET_MODEL_ID
+        sync: false
+      - key: TRAFFIC_MODEL_ID
+        sync: false
+      - key: SEATBELT_MODEL_ID
+        sync: false
+      - key: THEFT_MODEL_ID
+        sync: false
+      - key: SMTP_EMAIL
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_SERVER
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"

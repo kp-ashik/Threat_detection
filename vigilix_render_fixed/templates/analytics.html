@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="top-head"><div><span class="tag">Analytics</span><h1>Monthly Records</h1><p>Detection counts by month, location type and alert category.</p></div><a class="btn secondary" href="/dashboard">Back</a></header>
+<section class="panel chart-panel big-chart"><h2>Monthly Alert Records</h2><div class="bar-chart analytics-chart">{% for item in monthly_stats %}<div class="bar-item"><div class="bar" style="height:{{ item.height }}%"><span>{{ item.count }}</span></div><small>{{ item.month }}</small></div>{% endfor %}</div></section>
+<section class="dashboard-split"><div class="panel"><h2>Alerts by Location Type</h2>{% for row in location_rows %}<div class="rule-line"><b>{{ row.location_type }}</b><span>{{ row.count }}</span></div>{% else %}<p class="muted">No location records yet.</p>{% endfor %}</div><div class="panel"><h2>Top Alert Types</h2>{% for row in type_rows %}<div class="rule-line"><b>{{ row.threat_type }}</b><span>{{ row.count }}</span></div>{% else %}<p class="muted">No alert records yet.</p>{% endfor %}</div></section>
+{% endblock %}
