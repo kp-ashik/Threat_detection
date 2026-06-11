@@ -4,6 +4,6 @@ opencv-python-headless==4.9.0.80
 numpy==1.26.4
 ultralytics==8.2.18
 python-dotenv==1.0.1
-inference-sdk==0.9.19
+inference-sdk==0.9.18
 reportlab==4.2.0
 gunicorn==22.0.0
