@@ -7,3 +7,5 @@ python-dotenv==1.0.1
 inference-sdk==0.9.18
 reportlab==4.2.0
 gunicorn==22.0.0
+torch==2.2.2
+torchvision==0.17.2
